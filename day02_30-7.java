@@ -105,3 +105,4 @@
  *
  * The final array is [1, 2, _] with `count` = 2, meaning there are 2 unique elements.
  */
+// The time complexity of the provided code is O(n), where n is the length of the input array nums.
