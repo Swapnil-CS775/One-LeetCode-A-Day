@@ -1,6 +1,8 @@
 /*
  * 1672. Richest Customer Wealth
     Easy
+    Runtime - 0ms | Beats 100%
+    Memory - 42.80 Mb | Beats 34.60%
 
 Hint
 You are given an m x n integer grid accounts where accounts[i][j] is the amount of money the i​​​​​​​​​​​th​​​​ customer has in the j​​​​​​​​​​​th​​​​ bank. Return the wealth that the richest customer has.
