@@ -50,3 +50,41 @@ For each day 'i' as the buy day, it checks every subsequent day 'j' as the sell 
 If the calculated profit is greater than the current maxProfit, it updates maxProfit.
 The time complexity of this solution is O(n^2), which is not efficient for large input sizes, leading to Time Limit Exceeded (TLE) errors.
 */
+
+//Optimized approch
+//Runtime - 2ms | Beats 70.13%
+//Memory - 61.59 Mb | 56.25%
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int min=prices[0];
+        int maxProfit=0;
+        for(int i=0;i<prices.length;i++)
+        {
+            if(prices[i]<min)
+            {
+                min=prices[i];
+            }
+            if(maxProfit<prices[i]-min)
+            {
+                maxProfit=prices[i]-min;
+            }
+        }
+        return maxProfit;
+    }
+}
+
+/*
+Explanation:
+This solution optimizes the brute force approach by using a single pass through the prices array to determine the maximum profit.
+The key idea is to track the minimum price encountered so far and the maximum profit achievable at each step.
+
+1. Initialize `min` to the first price and `maxProfit` to 0.
+2. Iterate through each price in the array:
+   - If the current price is less than the `min`, update `min` to the current price.
+   - Calculate the potential profit by subtracting the current `min` from the current price.
+   - If this potential profit is greater than `maxProfit`, update `maxProfit`.
+
+This approach ensures that we only need one pass through the prices array, making the time complexity O(n), which is much more efficient than the brute force approach.
+*/
+
