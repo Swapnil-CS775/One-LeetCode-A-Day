@@ -27,6 +27,7 @@
 
 // Brute Force Approach
 // Note: This approach is not acceptable due to Time Limit Exceeded
+//Runtime: 2464 ms
 
 class Solution {
     public int maxProfit(int[] prices) {
