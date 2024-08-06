@@ -1,6 +1,8 @@
 /*
  * 88. Merge Sorted Array
 Easy
+Runtime - 0 ms | Beats 100 %
+Memory - 42.00 MB || Beats 72.27 %
 
 You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
 
@@ -147,4 +149,60 @@ class Solution {
     }
 }
 
+/*
+ * Example: nums1 = [1, 2, 3, 0, 0, 0], m = 3
+ *          nums2 = [2, 5, 6], n = 3
+ * 
+ * Initial pointers:
+ * i = m - 1 = 2 (points to nums1[2] which is 3)
+ * j = n - 1 = 2 (points to nums2[2] which is 6)
+ * k = m + n - 1 = 5 (points to the last position of nums1 where the final merged element should go)
+ * 
+ * Step-by-step process:
+ * 
+ * 1. While loop condition: i >= 0 && j >= 0
+ *    - Compare nums1[i] (3) and nums2[j] (6):
+ *      - nums1[i] < nums2[j], so the condition `nums1[i] > nums2[j]` is false.
+ *      - Move into the `else` block:
+ *        - Place nums2[j] (6) at nums1[k].
+ *        - nums1 becomes [1, 2, 3, 0, 0, 6].
+ *        - Decrement j and k: j = 1, k = 4.
+ * 
+ * 2. While loop condition: i >= 0 && j >= 0
+ *    - Compare nums1[i] (3) and nums2[j] (5):
+ *      - nums1[i] < nums2[j], so the condition `nums1[i] > nums2[j]` is false.
+ *      - Move into the `else` block:
+ *        - Place nums2[j] (5) at nums1[k].
+ *        - nums1 becomes [1, 2, 3, 0, 5, 6].
+ *        - Decrement j and k: j = 0, k = 3.
+ * 
+ * 3. While loop condition: i >= 0 && j >= 0
+ *    - Compare nums1[i] (3) and nums2[j] (2):
+ *      - nums1[i] > nums2[j], so the condition `nums1[i] > nums2[j]` is true.
+ *      - Move into the `if` block:
+ *        - Place nums1[i] (3) at nums1[k].
+ *        - nums1 becomes [1, 2, 3, 3, 5, 6].
+ *        - Decrement i and k: i = 1, k = 2.
+ * 
+ * 4. While loop condition: i >= 0 && j >= 0
+ *    - Compare nums1[i] (2) and nums2[j] (2):
+ *      - nums1[i] == nums2[j], so the condition `nums1[i] > nums2[j]` is false.
+ *      - Move into the `else` block:
+ *        - Place nums2[j] (2) at nums1[k].
+ *        - nums1 becomes [1, 2, 2, 3, 5, 6].
+ *        - Decrement j and k: j = -1, k = 1.
+ * 
+ * 5. While loop condition: i >= 0 && j >= 0
+ *    - j < 0 now, so exit the while loop.
+ * 
+ * 6. Remaining elements in nums1:
+ *    - Place nums1[i] (2) at nums1[k].
+ *    - nums1 becomes [1, 2, 2, 3, 5, 6].
+ *    - Decrement i and k: i = 0, k = 0.
+ * 
+ * 7. Remaining elements in nums2:
+ *    - j < 0, so skip the while loop for remaining nums2 elements.
+ * 
+ * Final merged array: [1, 2, 2, 3, 5, 6]
+ */
 
