@@ -48,3 +48,48 @@ class Solution {
 
 //Explaination 
 // Simple apply binary search
+/*
+Runtime - 0 ms | Beats 100.00%
+Memory - 41.76 MB | Beats 88.19%
+*/
+
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {   
+        int outerStart = 0, outerEnd = matrix.length - 1, mid;
+        
+        // Binary search to find the correct row
+        while (outerStart <= outerEnd) {
+            mid = outerStart + (outerEnd - outerStart) / 2;
+            if (matrix[mid][0] == target) {
+                return true;
+            } else if (matrix[mid][0] < target) {
+                outerStart = mid + 1;
+            } else {
+                outerEnd = mid - 1;
+            }
+        }
+        
+        // At this point, outerEnd should be the index of the row where the target could be
+        if (outerEnd < 0) {
+            return false;  // Target is smaller than the smallest element in the matrix
+        }
+        
+        int innerStart = 0, innerEnd = matrix[outerEnd].length - 1;
+        
+        // Binary search within the found row
+        while (innerStart <= innerEnd) {
+            mid = innerStart + (innerEnd - innerStart) / 2;
+            if (matrix[outerEnd][mid] == target) {
+                return true;
+            } else if (matrix[outerEnd][mid] < target) {
+                innerStart = mid + 1;
+            } else {
+                innerEnd = mid - 1;
+            }
+        }
+        
+        return false;  // Target not found
+    }
+}
+
+//Explaination
