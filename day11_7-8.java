@@ -93,3 +93,53 @@ class Solution {
 }
 
 //Explaination
+/*
+Example Matrix:
+matrix = [
+  [1, 3, 5, 7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 60]
+]
+Target: 16
+
+Step 1: Binary Search on Rows
+--------------------------------
+Initial Values:
+- outerStart = 0 (first row)
+- outerEnd = 2 (last row)
+
+Iteration 1:
+- Calculate mid = 0 + (2 - 0) / 2 = 1 (second row)
+- Compare matrix[mid][0] = matrix[1][0] = 10 with target = 16.
+- Since 10 < 16, move outerStart to mid + 1 = 2.
+
+Iteration 2:
+- Calculate mid = 2 + (2 - 2) / 2 = 2 (third row)
+- Compare matrix[mid][0] = matrix[2][0] = 23 with target = 16.
+- Since 23 > 16, move outerEnd to mid - 1 = 1.
+
+Result:
+- The target could be in row with index outerEnd = 1 (second row).
+
+Step 2: Binary Search within the Row
+--------------------------------------
+Row to Search: [10, 11, 16, 20]
+- outerEnd = 1, so search within this row.
+
+Initial Values:
+- innerStart = 0 (first element in the row)
+- innerEnd = 3 (last element in the row)
+
+Iteration 1:
+- Calculate mid = 0 + (3 - 0) / 2 = 1 (second element)
+- Compare matrix[outerEnd][mid] = matrix[1][1] = 11 with target = 16.
+- Since 11 < 16, move innerStart to mid + 1 = 2.
+
+Iteration 2:
+- Calculate mid = 2 + (3 - 2) / 2 = 2 (third element)
+- Compare matrix[outerEnd][mid] = matrix[1][2] = 16 with target = 16.
+- Since they are equal, return true.
+
+Final Result:
+- The target 16 is found in the matrix at position (1, 2).
+*/
