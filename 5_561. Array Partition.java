@@ -59,3 +59,14 @@ class Solution {
 }
 
 // optimized approch
+class Solution {
+    public int arrayPairSum(int[] nums) {
+        int max=0;
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length-1;i=i+2) // same approch but we know that array is sorted so 1st element is always less than sec and so on .....so just sum even index numbers
+        {
+            max=max+nums[i];
+        }
+        return max;
+    }
+}
