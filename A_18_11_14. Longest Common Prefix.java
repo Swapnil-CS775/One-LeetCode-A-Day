@@ -64,3 +64,35 @@ class Solution {
     }
 }
 
+
+//Optimal aproch
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+
+        if (strs == null) { // handle edge case if array is null then simply return no comman prefix
+            return "";
+        }
+        
+        String prefix = strs[0];  //consider first string is in array is a longest prefix- and reduce it as conparing by next element
+        
+        for (int i = 1; i < strs.length; i++) {
+            
+            while (strs[i].indexOf(prefix) != 0) { //it means flower is not present in flow so reduce flower by 1 which make flowe 
+                                                   //again flowe is not present in flow so reduce flowe by 1 which make flow
+                                                   //now flow is present in flow so go to next string
+                                                   //flow is not present in flight so reduce flow by 1 which make flo
+                                                   //flo id not present in flight so reduce flo by 1 which make fl
+                                                   //fl is present in flight and array is also traversed out of loop and retun prefix="fl"
+                prefix = prefix.substring(0, prefix.length() - 1);
+                                                   //here start index is inclusive and end index is exclusive
+                                                  
+                if (prefix.isEmpty()) { //this line triggers when on specific word we dont get any common prefix and by making
+                                        //substring the word get exosted
+                    return "";
+                }
+            }
+        }
+        return prefix;
+    }
+}
+
