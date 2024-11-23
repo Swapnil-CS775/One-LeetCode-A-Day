@@ -71,3 +71,34 @@ class Solution {
         return count;
     }
 }
+
+//Ans 2 - 
+class Solution {
+    public int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
+        int nonDistanceVAlues = 0;
+
+        Arrays.sort(arr2);
+
+        for (int i = 0; i < arr1.length; i++) {
+            int start = 0, end = arr2.length - 1, mid;
+
+            while (start <= end) {
+                mid = start + (end - start) / 2;
+
+                if (Math.abs(arr1[i] - arr2[mid]) <= d) {
+                    nonDistanceVAlues++;
+                    break;
+                }
+
+                else if (arr1[i] > arr2[mid]) {
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
+            }
+        }
+
+        return arr1.length-nonDistanceVAlues;
+    }
+}
+
