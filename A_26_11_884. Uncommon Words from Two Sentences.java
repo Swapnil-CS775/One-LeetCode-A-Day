@@ -40,6 +40,10 @@ All the words in s1 and s2 are separated by a single space.
 */
 
 // Code
+
+// This question maks us silly we just have to return that element whose frequency is 1 
+//(condition is return string nighter present in s1 more than once nor present in s2)
+
 import java.util.*;
 
 class Solution {
