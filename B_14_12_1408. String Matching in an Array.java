@@ -56,3 +56,26 @@ class Solution {
         return new ArrayList<>(result);
     }
 }
+
+// OPtimal approch 
+class Solution {
+    public List<String> stringMatching(String[] words) {
+        List<String> result = new ArrayList<>();
+
+        // Sort the words by length
+        Arrays.sort(words, (a, b) -> a.length() - b.length());
+
+        // Check each word as a substring in the subsequent words
+        for (int i = 0; i < words.length; i++) {
+            for (int j = i + 1; j < words.length; j++) {
+                if (words[j].contains(words[i])) {
+                    result.add(words[i]);
+                    break; // No need to check further once a match is found
+                }
+            }
+        }
+
+        return result;
+    }
+}
+
