@@ -1,3 +1,4 @@
+/*
 2053. Kth Distinct String in an Array
 Solved
 Easy
@@ -40,3 +41,30 @@ Constraints:
 1 <= k <= arr.length <= 1000
 1 <= arr[i].length <= 5
 arr[i] consists of lowercase English letters.
+ */
+
+//Code - 
+class Solution {
+    public String kthDistinct(String[] arr, int k) {
+        // Step 1: Count the frequency of each string
+        Map<String, Integer> frequencyMap = new HashMap<>();
+        for (String str : arr) {
+            frequencyMap.put(str, frequencyMap.getOrDefault(str, 0) + 1);
+        }
+
+        // Step 2: Find the kth distinct string
+        int count = 0;
+        for (String str : arr) {
+            if (frequencyMap.get(str) == 1) { // Distinct string
+                count++;
+                if (count == k) {
+                    return str; // Return kth distinct string
+                }
+            }
+        }
+
+        // Step 3: If fewer than k distinct strings
+        return "";
+    }
+}
+
