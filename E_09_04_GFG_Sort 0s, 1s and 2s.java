@@ -55,3 +55,32 @@ class Solution {
         }
     }
 }
+
+
+//Another optimal way 
+//dutch national flag algorithim
+class Solution {
+    // Function to sort an array of 0s, 1s, and 2s
+    public void sort012(int[] arr) {
+        // code here
+        int s=0,m=0,e=arr.length-1;
+        while(m<=e){
+            if(arr[m]==0){
+                int temp=arr[s];
+                arr[s]=arr[m];
+                arr[m]=temp;
+                m++;
+                s++;
+            }
+            else if(arr[m]==2){
+                int temp=arr[m];
+                arr[m]=arr[e];
+                arr[e]=temp;
+                e--;
+            }
+            else{
+                m++;
+            }
+        }
+    }
+}
