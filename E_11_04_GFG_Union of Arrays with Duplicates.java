@@ -26,6 +26,28 @@ Constraints:
 */
 
 //code - 
+
+//using arraylist-
+class Solution {
+    public static int findUnion(int a[], int b[]) {
+        // code here
+        ArrayList<Integer>list=new ArrayList<>();
+        for(int i=0;i<a.length;i++)
+        {
+            if(!list.contains(a[i]))
+                list.add(a[i]);
+        }
+        for(int i=0;i<b.length;i++)
+        {
+            if(!list.contains(b[i]))
+                list.add(b[i]);
+        }
+        return list.size();
+    }
+}
+//.contains() in ArrayList is O(n) in worst case.
+//For each element, you're scanning the list to check for duplicates — very slow for large input.
+
 //using hsah set
 class Solution {
     public static int findUnion(int a[], int b[]) {
@@ -37,3 +59,6 @@ class Solution {
     }
 }
 
+//O(m + n)
+//No need to manually check for duplicates.
+//Hash-based structure handles uniqueness and insertion in constant average time.
