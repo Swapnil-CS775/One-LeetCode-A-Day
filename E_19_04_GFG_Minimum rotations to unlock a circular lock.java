@@ -49,6 +49,8 @@ class Solution {
             int anticlockwise = (r - d + 10) % 10;
 
             rotation += Math.min(clockwise, anticlockwise);
+            //rotation += Math.min(Math.abs(r-d),10-Math.abs(r-d));
+            //this also works
 
             R /= 10;
             D /= 10;
