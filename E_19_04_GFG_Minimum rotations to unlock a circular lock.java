@@ -56,3 +56,68 @@ class Solution {
         return rotation;
     }
 }
+
+/*
+### 🔐 Intuition: Minimum Rotations to Unlock a Circular Lock
+
+Each digit (0–9) on the lock is circular — you can rotate clockwise or anticlockwise.
+
+We’re given:
+- `r` = current digit (from Random R)
+- `d` = desired digit (from Desired D)
+
+#### 🎯 Goal:
+Find the **minimum number of rotations** (clockwise or anticlockwise) from `r` to `d`.
+
+---
+
+### ✅ Clockwise Rotation:
+To move **forward** from `r` to `d`:
+
+```java
+int clockwise = (d - r + 10) % 10;
+```
+
+- `(d - r)` gives the direct difference.
+- If it's negative (e.g., 2 → 9), we add 10 to wrap around the circle.
+- `% 10` ensures we stay within the 0–9 range.
+
+---
+
+### ✅ Anticlockwise Rotation:
+To move **backward** from `r` to `d`:
+
+```java
+int anticlockwise = (r - d + 10) % 10;
+```
+
+- Same idea: difference + wrap + modulo.
+
+---
+
+### 🧠 Final Answer:
+Take the minimum of both:
+```java
+rotation += Math.min(clockwise, anticlockwise);
+```
+
+---
+
+### 🔄 Example:
+R = 9, D = 2  
+- Clockwise: (2 - 9 + 10) % 10 = 3  
+- Anticlockwise: (9 - 2 + 10) % 10 = 7  
+✔ Minimum = 3 (correct)
+
+---
+
+### ✅ Summary:
+| Direction     | Formula                        | Purpose                 |
+|---------------|---------------------------------|--------------------------|
+| Clockwise     | `(d - r + 10) % 10`             | Forward rotation         |
+| Anticlockwise | `(r - d + 10) % 10`             | Backward rotation        |
+| Final step    | `Math.min(clockwise, anticlockwise)` | Pick shortest path |
+
+This way, you correctly handle all circular edge cases in a modular and efficient way!
+
+*/
