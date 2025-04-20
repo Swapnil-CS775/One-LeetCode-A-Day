@@ -27,6 +27,7 @@ Constraints:
 */
 
 //code -
+// o(n x n)
 class Solution {
 
     public ArrayList<Integer> jobSequencing(int[] deadline, int[] profit) {
@@ -85,3 +86,61 @@ class Solution {
      return list;  
     }
 }
+
+//O(nlogn)
+class Solution {
+
+    public ArrayList<Integer> jobSequencing(int[] deadline, int[] profit) {
+        // code here
+        int n=profit.length;
+        Integer[] index = new Integer[n];
+
+        for (int i = 0; i < n; i++) index[i] = i;
+
+        // Sort indices based on profit descending
+        Arrays.sort(index, (i, j) -> profit[j] - profit[i]);
+
+        // Create new arrays for sorted values
+        int[] sortedProfit = new int[n];
+        int[] sortedDeadline = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            sortedProfit[i] = profit[index[i]];
+            sortedDeadline[i] = deadline[index[i]];
+        }
+
+        // Copy back to original arrays
+        for (int i = 0; i < n; i++) {
+            profit[i] = sortedProfit[i];
+            deadline[i] = sortedDeadline[i];
+        }
+        
+        int max1=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++) max1=Integer.max(max1,deadline[i]);
+        
+        int maxProfit=0;
+        int count=0;
+        int[] parent=new int[max1+1];
+        for(int i=0;i<parent.length;i++) parent[i]=i;
+        ArrayList<Integer>list=new ArrayList<>();
+        
+        for(int i=0;i<n;i++){
+            int slot=find(deadline[i],parent);
+            if(slot>0){
+                maxProfit=maxProfit+profit[i];
+                count++;
+                parent[slot]=slot-1;
+            }
+        }
+        list.add(count);
+        list.add(maxProfit);
+     return list;  
+    }
+    
+    int find(int deadline,int[] parent){
+        if(parent[deadline]==deadline) return deadline;
+        
+        return parent[deadline]=find(parent[deadline],parent);
+    }
+}
+
