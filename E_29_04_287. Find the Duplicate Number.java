@@ -50,3 +50,15 @@ class Solution {
     return 0;
     }
 }
+
+//second approach using hashset in o(n)
+class Solution {
+    public int findDuplicate(int[] nums) {
+        HashSet<Integer>set=new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+            boolean duplicate=set.add(nums[i]);
+            if(!duplicate) return nums[i];
+        }
+    return 0;
+    }
+}
