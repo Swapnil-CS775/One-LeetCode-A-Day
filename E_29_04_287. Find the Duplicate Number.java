@@ -62,3 +62,22 @@ class Solution {
     return 0;
     }
 }
+
+
+//this is without using extra space and o(n)
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int current=nums[0];
+        int i=0;
+        while(nums[i]!=-1){
+            current=nums[i];
+            int oldi=i;
+            i=nums[i];
+            nums[oldi]=-1;
+        }
+    return current;
+    }
+}
+//-> here we track the cycle when we again reach to that element than it is duplicate
+//but here we updating array
+
