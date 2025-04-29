@@ -81,3 +81,23 @@ class Solution {
 //-> here we track the cycle when we again reach to that element than it is duplicate
 //but here we updating array
 
+//final approach
+//here we used linked list cycle and floyds algo to detect start of cycle
+class Solution {
+    public int findDuplicate(int[] nums) {
+        int slow=nums[0];
+        int fast=nums[0];
+
+        do{
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+        }while (slow!=fast);
+
+        slow=nums[0];
+        while (slow!=fast){
+            slow=nums[slow];
+            fast=nums[fast];
+        }
+        return slow;
+    }
+}
