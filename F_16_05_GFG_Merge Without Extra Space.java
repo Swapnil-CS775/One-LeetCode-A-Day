@@ -103,3 +103,27 @@ public static void uCantUseExtraSpace(int[] p,int[] q){
     }
 
 
+//third approach - 
+class Solution {
+    // Function to merge the arrays.
+    public void mergeArrays(int a[], int b[]) {
+        // code here
+        uCantUseExtraSpace1(a,b);
+    }
+    void uCantUseExtraSpace1(int[] a,int[] b){
+        int i=a.length-1;
+        int j=0;
+        while(i!=-1 && j!=b.length && (a[i]>b[j])){
+            int temp=a[i];
+            a[i]=b[j];
+            b[j]=temp;
+            i--;
+            j++;
+        }
+        Arrays.sort(a);
+        Arrays.sort(b);
+    }
+}
+
+
+
