@@ -41,7 +41,7 @@ class Node{
 class Solution {
     public Node addOne(Node head) {
         // code here.
-        
+        //if list contain only one node and its value is 9 then simply return 1->0;
         if(head.data==9 && head.next==null){
             Node ans=new Node(1);
             head.data=0;
@@ -49,17 +49,21 @@ class Solution {
             head=ans;
             return head;
         }
-        
+
+        //if list contain single node and its value is less than 8 then simply return sum;
         if(head.next==null){
             head.data=head.data+1;
             return head;
         }
-        
+
+       //first reverse compleate list to add carry
         Node tempHead=reverse(head);
         if((tempHead.data+1)<=9){
             tempHead.data=tempHead.data+1;
             return reverse(tempHead);
+         //simply return form here is last node is less than equal to 8;
         }else{
+            //here logic start if last node is = 9
             tempHead.data=0;
             Node temp=tempHead.next;
             
