@@ -55,6 +55,42 @@ class Solution {
 
 
 //using O(N)
-
+class Solution {
+    Node compute(Node head) {
+        // your code here
+        head=rev(head);
+        
+        Node curr=head;
+        Node prev=curr;
+        int maxSoFar=curr.data;
+        
+        while(curr!=null){
+            if(curr.data<maxSoFar) prev.next=curr.next;
+            else {
+                maxSoFar=curr.data;
+                prev=curr;
+            }
+            curr=curr.next;
+        }
+        
+        head=rev(head);
+        return head;
+    }
+    
+    public Node rev(Node head){
+        Node curr=head;
+        Node prev=null;
+        Node next=null;
+        
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        
+        return prev;
+    }
+}
 
 
