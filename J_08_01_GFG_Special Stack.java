@@ -55,3 +55,39 @@ class GfG {
         return s.isEmpty();
     }
 }
+
+
+//second expected approach - 
+
+/*Complete the function(s) below*/
+class GfG {
+    Stack<Integer>minStack=new Stack<>();
+    public void push(int a, Stack<Integer> s) {
+        s.push(a);
+        if(minStack.isEmpty())
+            minStack.push(a);
+        else
+            minStack.push(Math.min(a, minStack.peek()));
+    }
+
+    public int pop(Stack<Integer> s) {
+        // add code here.
+        minStack.pop();
+        return s.pop();
+    }
+
+    public int min(Stack<Integer> s) {
+        // add code here.
+        return minStack.peek();
+    }
+
+    public boolean isFull(Stack<Integer> s, int n) {
+        // add code here.
+        return s.size()==n;
+    }
+
+    public boolean isEmpty(Stack<Integer> s) {
+        // add code here.
+        return s.isEmpty();
+    }
+}
