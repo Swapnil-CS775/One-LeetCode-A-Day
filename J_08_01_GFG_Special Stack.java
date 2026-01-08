@@ -91,3 +91,46 @@ class GfG {
         return s.isEmpty();
     }
 }
+
+//this is in o(1) time and space
+/*Complete the function(s) below*/
+class GfG {
+    int min;
+    public void push(int a, Stack<Integer> s) {
+        if(s.isEmpty()){
+            s.push(a);
+            min=a;
+        }else if(a>=min){
+            s.push(a);
+        }else{
+            s.push(2*a-min);
+            min=a;
+        }
+    }
+
+    public int pop(Stack<Integer> s) {
+        // add code here.
+        int top=s.pop();
+        if(top>=min) return top;
+        else{
+            int originalMin=min;
+            min=2*min-top;
+            return originalMin;
+        }
+    }
+
+    public int min(Stack<Integer> s) {
+        // add code here.
+        return min;
+    }
+
+    public boolean isFull(Stack<Integer> s, int n) {
+        // add code here.
+        return s.size()==n;
+    }
+
+    public boolean isEmpty(Stack<Integer> s) {
+        // add code here.
+        return s.isEmpty();
+    }
+}
