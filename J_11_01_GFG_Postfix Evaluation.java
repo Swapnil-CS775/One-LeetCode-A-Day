@@ -61,3 +61,39 @@ class Solution {
         }
     }
 }
+
+
+//slightly optimal appraoch - 
+class Solution {
+    public int evaluatePostfix(String[] arr) {
+        // code here
+        Stack<Integer>stack=new Stack<>();
+        
+        for(int i=0;i<arr.length;i++){
+            String ch=arr[i];
+            int a=0,b=0;
+            if(isOperand(ch)){
+                a=stack.pop();
+                b=stack.pop();
+                
+                if(ch.equals("+")) stack.push(b+a);
+                else if(ch.equals("-")) stack.push(b-a);
+                else if(ch.equals("*")) stack.push(b*a);
+                else if(ch.equals("/")){
+                    int ans=b/a;
+                    if ((b < 0) ^ (a < 0)) {       // one negative, one positive
+                        if (b % a != 0) ans--;     // has remainder → floor more negative
+                    }
+                    stack.push(ans);
+                }
+                else if(ch.equals("^")) stack.push((int)Math.pow(b,a));
+            }else stack.push(Integer.parseInt(ch));
+        }
+    
+        return stack.peek();
+    }
+    
+    public boolean isOperand(String s) {
+        return s.length()==1 && "+-*/^".contains(s);
+    }
+}
