@@ -39,3 +39,25 @@ class Solution {
 
 
 //second optimal without using stack but using recursion
+class Solution {
+    public static void reverseStack(Stack<Integer> st) {
+        // code here
+        solve(st);
+    }
+    
+    public static void solve(Stack<Integer>stack){
+        int ele=stack.pop();
+        if(!stack.isEmpty()) solve(stack);
+        insAtEnd(stack,ele);
+    }
+    
+    public static void insAtEnd(Stack<Integer>stack,int data){
+        if (stack.isEmpty()){
+            stack.push(data);
+        }else{
+            int currVal=stack.pop();
+            insAtEnd(stack,data);
+            stack.push(currVal);
+        }
+    }
+}
